@@ -1,0 +1,136 @@
+captainVersion: 4
+services:
+  $$cap_appname-etcd:
+    image: quay.io/coreos/etcd:$$cap_etcd_version
+    environment:
+      ETCD_AUTO_COMPACTION_MODE: revision
+      ETCD_AUTO_COMPACTION_RETENTION: '1000'
+      ETCD_QUOTA_BACKEND_BYTES: '4294967296'
+      ETCD_SNAPSHOT_COUNT: '50000'
+    command:
+      - etcd
+      - --advertise-client-urls=http://srv-captain--$$cap_appname-etcd:2379
+      - --listen-client-urls=http://0.0.0.0:2379
+      - --data-dir=/etcd
+    volumes:
+      - $$cap_appname-etcd-data:/etcd
+    healthcheck:
+      test:
+        - CMD
+        - etcdctl
+        - endpoint
+        - health
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    caproverExtra:
+      notExposeAsWebApp: 'true'
+
+  $$cap_appname:
+    image: milvusdb/milvus:$$cap_milvus_version
+    command:
+      - milvus
+      - run
+      - standalone
+    environment:
+      ETCD_ENDPOINTS: srv-captain--$$cap_appname-etcd:2379
+      MINIO_ADDRESS: $$cap_s3_endpoint
+      MINIO_ACCESS_KEY_ID: $$cap_s3_access_key_id
+      MINIO_SECRET_ACCESS_KEY: $$cap_s3_secret_access_key
+      MINIO_BUCKET_NAME: $$cap_s3_bucket
+      MINIO_USE_SSL: $$cap_s3_use_ssl
+      MINIO_REGION: $$cap_s3_region
+      MQ_TYPE: woodpecker
+    volumes:
+      - $$cap_appname-milvus-data:/var/lib/milvus
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:9091/healthz
+      interval: 30s
+      start_period: 90s
+      timeout: 20s
+      retries: 3
+    depends_on:
+      - $$cap_appname-etcd
+    caproverExtra:
+      notExposeAsWebApp: 'true'
+
+volumes:
+  $$cap_appname-etcd-data:
+  $$cap_appname-milvus-data:
+
+caproverOneClickApp:
+  variables:
+    - id: $$cap_milvus_version
+      label: Milvus version
+      defaultValue: 'v2.6.25'
+      description: Pin a Milvus 2.6.x image tag. This stays editable for controlled upgrades.
+      validRegex: '/^v2\.6\.[0-9]+$/'
+
+    - id: $$cap_etcd_version
+      label: etcd version
+      defaultValue: 'v3.5.25'
+      description: etcd stores Milvus metadata and remains on a small persistent local volume.
+      validRegex: '/^v3\.5\.[0-9]+$/'
+
+    - id: $$cap_s3_endpoint
+      label: S3 endpoint (host:port, no scheme)
+      description: "Example: fsn1.your-objectstorage.com:443. Do not include https:// or a path."
+      validRegex: '/^[^\s/:]+(?::[0-9]{1,5})?$/'
+
+    - id: $$cap_s3_access_key_id
+      label: S3 access key ID
+      description: Access key for a dedicated Milvus bucket or prefix.
+      validRegex: '/.{1,}/'
+
+    - id: $$cap_s3_secret_access_key
+      label: S3 secret access key
+      description: Secret key for the S3-compatible object storage.
+      validRegex: '/.{1,}/'
+
+    - id: $$cap_s3_bucket
+      label: S3 bucket
+      defaultValue: 'milvus'
+      description: Dedicated bucket for Milvus vector/index/WAL object storage.
+      validRegex: '/^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$/'
+
+    - id: $$cap_s3_use_ssl
+      label: Use SSL for S3
+      defaultValue: 'true'
+      description: Keep true for normal HTTPS S3-compatible endpoints.
+      validRegex: '/^(true|false)$/'
+
+    - id: $$cap_s3_region
+      label: S3 region
+      defaultValue: 'us-east-1'
+      description: Provider region, for example us-east-1 or the region required by your S3 provider.
+      validRegex: '/.{1,}/'
+
+  instructions:
+    start: |-
+      Milvus Standalone will be deployed privately with etcd metadata storage and external S3-compatible object storage.
+
+      Before continuing, create a dedicated S3 bucket and credentials. The endpoint must be host:port without http:// or https://.
+
+      This template intentionally does not install MinIO: bulk Milvus vector/index/WAL data belongs on external S3, while only etcd metadata and bounded Milvus working data stay on local CapRover volumes.
+    end: |-
+      Milvus is deployed privately inside the CapRover network.
+
+      Internal Milvus address:
+      http://srv-captain--$$cap_appname:19530
+
+      For AnythingLLM on the same CapRover cluster configure:
+      VECTOR_DB=milvus
+      MILVUS_ADDRESS=http://srv-captain--$$cap_appname:19530
+
+      Leave MILVUS_USERNAME and MILVUS_PASSWORD empty unless you separately enable Milvus authentication.
+
+      Do not expose port 19530 publicly unless an external client genuinely requires it. Keep the S3 bucket and etcd volume backed up according to your infrastructure policy.
+  displayName: 'Milvus (External S3)'
+  isOfficial: false
+  baseUrl: https://github.com/milvus-io/milvus
+  description: Milvus Standalone for CapRover with private etcd metadata and external S3-compatible storage for scalable vector data.
+  documentation: https://milvus.io/docs/install_standalone-docker-compose.md
