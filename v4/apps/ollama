@@ -26,7 +26,7 @@
       {
         "id": "$$cap_ollama_version",
         "label": "Ollama Version",
-        "defaultValue": "0.40.0",
+        "defaultValue": "0.35.1",
         "description": "Pinned stable Ollama release.",
         "validRegex": "/^[0-9]+\\.[0-9]+\\.[0-9]+$/"
       }
