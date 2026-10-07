@@ -94,7 +94,7 @@ caproverOneClickApp:
       description: Secret key for the S3-compatible object storage.
       validRegex: '/.{1,}/'
 
-    - id: $$$cap_s3_bucket
+    - id: $cap_s3_bucket
       label: S3 bucket
       defaultValue: 'milvus'
       description: Dedicated bucket for Milvus vector/index/WAL object storage.
