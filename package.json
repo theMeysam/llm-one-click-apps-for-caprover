@@ -1,7 +1,7 @@
 {
-  "name": "caprover-one-click-apps",
+  "name": "meysam-caprover-one-click-apps",
   "version": "1.0.0",
-  "description": "Custom One Click App Repository for CapRover",
+  "description": "Maintained CapRover One-Click Apps used across Meysam's self-hosted infrastructure",
   "scripts": {
     "format": "prettier --debug-check \"./public/**/*.{json,yml}\"",
     "format:write": "prettier --write \"./public/**/*.{json,yml}\"",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caproverhub/caprover-one-click-apps.git"
+    "url": "git+https://github.com/theMeysam/llm-one-click-apps-for-caprover.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "theMeysam",
+  "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/caproverhub/caprover-one-click-apps/issues"
+    "url": "https://github.com/theMeysam/llm-one-click-apps-for-caprover/issues"
   },
-  "homepage": "https://github.com/caproverhub/caprover-one-click-apps",
+  "homepage": "https://themeysam.github.io/llm-one-click-apps-for-caprover",
   "dependencies": {
     "fs-extra": "^11.2.0",
     "gh-pages": "^6.1.1",
