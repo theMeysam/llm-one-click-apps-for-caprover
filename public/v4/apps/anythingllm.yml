@@ -16,9 +16,9 @@ caproverOneClickApp:
   variables:
     - id: $$cap_llm_version
       label: AnythingLLM Version
-      defaultValue: 'v1.17.0'
-      description: Pinned stable release. See https://github.com/Mintplex-Labs/anything-llm/releases
-      validRegex: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+      defaultValue: '1.17.0'
+      description: Pinned stable Docker Hub tag. AnythingLLM image tags do not use a leading v.
+      validRegex: /^[0-9]+\.[0-9]+\.[0-9]+$/
     - id: $$cap_uid
       label: User ID
       defaultValue: '1000'
