@@ -12,7 +12,7 @@ In **Apps → One-Click Apps/Databases → 3rd party repositories**, add:
 
 | App | Default |
 | --- | --- |
-| AnythingLLM | v1.17.0 |
+| AnythingLLM | 1.17.0 |
 | Dozzle | v11.3.0 |
 | MariaDB | 12.3.3 |
 | Milvus (External S3) | v2.6.25 + etcd v3.5.25 |
