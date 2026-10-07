@@ -44,6 +44,8 @@ services:
       MINIO_REGION: $$cap_s3_region
       MINIO_CLOUD_PROVIDER: aws
       MQ_TYPE: woodpecker
+      common.security.authorizationEnabled: 'true'
+      common.security.defaultRootPassword: $cap_milvus_root_password
     volumes:
       - $$cap_appname-milvus-data:/var/lib/milvus
     healthcheck:
@@ -79,7 +81,13 @@ caproverOneClickApp:
       description: etcd stores Milvus metadata and remains on a small persistent local volume.
       validRegex: '/^v3\.5\.[0-9]+$/'
 
-    - id: $$cap_s3_endpoint
+    - id: $cap_milvus_root_password
+      label: Milvus root password
+      defaultValue: $cap_gen_random_hex(32)
+      description: Initial password for the built-in Milvus root user. AnythingLLM requires a non-empty Milvus username and password.
+      validRegex: '/.{8,}/'
+
+    - id: $cap_s3_endpoint
       label: S3 endpoint (host:port, no scheme)
       description: "Example: fsn1.your-objectstorage.com:443. Do not include https:// or a path."
       validRegex: '/^[^\s/:]+(?::[0-9]{1,5})?$/'
@@ -126,7 +134,7 @@ caproverOneClickApp:
 
   instructions:
     start: |-
-      Milvus Standalone will be deployed privately with etcd metadata storage and external S3-compatible object storage.
+      Milvus Standalone will be deployed privately with authentication enabled, etcd metadata storage, and external S3-compatible object storage.
 
       Before continuing, create a dedicated S3 bucket and credentials. The endpoint must be host:port without http:// or https://.
 
@@ -137,11 +145,26 @@ caproverOneClickApp:
       Internal Milvus address:
       http://srv-captain--$$cap_appname:19530
 
-      For AnythingLLM on the same CapRover cluster configure:
-      VECTOR_DB=milvus
-      MILVUS_ADDRESS=http://srv-captain--$$cap_appname:19530
+      In AnythingLLM go to Settings -> Vector Database -> Milvus and enter:
 
-      Leave MILVUS_USERNAME and MILVUS_PASSWORD empty unless you separately enable Milvus authentication.
+      Milvus DB Address:
+      http://srv-captain--$cap_appname:19530
+
+      Milvus Username:
+      root
+
+      Milvus Password:
+      Use the "Milvus root password" from this One-Click installation. In CapRover it is stored on the Milvus app under App Configs -> Environmental Variables as common.security.defaultRootPassword.
+
+      Equivalent AnythingLLM environment variables are:
+      VECTOR_DB=milvus
+      MILVUS_ADDRESS=http://srv-captain--$cap_appname:19530
+      MILVUS_USERNAME=root
+      MILVUS_PASSWORD=<the Milvus root password>
+
+      Authentication is enabled by this template. Do not leave the username or password empty in AnythingLLM.
+
+      Important for existing Milvus installations: common.security.defaultRootPassword is only used when the root credential is first created. Changing that setting later does not rotate an existing root password.
 
       Do not expose port 19530 publicly unless an external client genuinely requires it. Keep the S3 bucket and etcd volume backed up according to your infrastructure policy.
   displayName: 'Milvus (External S3)'
