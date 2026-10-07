@@ -20,7 +20,7 @@ caproverOneClickApp:
   variables:
     - id: $$cap_siyuan_version
       label: SiYuan Version
-      defaultValue: 'v3.8.6'
+      defaultValue: 'v3.8.5'
       description: Pinned latest stable SiYuan release.
       validRegex: /^v[0-9]+\.[0-9]+\.[0-9]+$/
     - id: $$cap_access_auth_code

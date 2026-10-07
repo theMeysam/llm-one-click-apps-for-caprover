@@ -21,13 +21,13 @@ In **Apps → One-Click Apps/Databases → 3rd party repositories**, add:
 | MySQL | 8.4.12 LTS |
 | n8n | 2.42.3 + PostgreSQL 18.6 |
 | ntfy | v2.28.0 |
-| Ollama | 0.40.0 |
-| Open WebUI + Ollama | v0.11.4 + Ollama 0.40.0 |
+| Ollama | 0.35.1 |
+| Open WebUI + Ollama | v0.11.4 + Ollama 0.35.1 |
 | Parse | Server 9.10.3 + Dashboard 9.2.0 + MongoDB 8.0 |
 | Portainer | 2.45.1 |
 | PostgreSQL | 18.6 |
 | SearXNG | rolling stable |
-| SiYuan | v3.8.6 |
+| SiYuan | v3.8.5 |
 | SnappyMail | v2.38.2 |
 | Stalwart Mail Server | v0.16.25 |
 | Vikunja | 2.7.0 + PostgreSQL 18.6 |
