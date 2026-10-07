@@ -23,8 +23,9 @@ caproverOneClickApp:
           defaultValue: root
           description: Only use alphanumeric chars.
           validRegex: /^([a-zA-Z0-9])+$/
-        - id: $$cap_mongo_password
+        - id: $cap_mongo_password
           label: MongoDB password
+          defaultValue: $cap_gen_random_hex(32)
           validRegex: /^\s*\S.*$/
     instructions:
         start: >-
