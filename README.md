@@ -1,6 +1,6 @@
 # Meysam's CapRover One-Click Apps
 
-A maintained CapRover One-Click catalog for the infrastructure and self-hosted apps used across my servers. App defaults are pinned to current stable/LTS releases where that is the safer production choice; SearXNG intentionally follows its rolling stable image.
+A maintained CapRover One-Click catalog for reusable infrastructure and self-hosted applications. App defaults are pinned to current stable/LTS releases where that is the safer production choice; SearXNG intentionally follows its rolling stable image.
 
 ## Add this repository to CapRover
 
