@@ -1,73 +1,231 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LLM Apps AI Stack</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gradient-to-r from-indigo-950 via-purple-950 to-indigo-950 min-h-screen">
-    <div class="container mx-auto px-4 py-12">
-      <div class="text-center mb-12">
-        <img src="logo-transparent.png" alt="LLM Apps AI Stack" class="mx-auto w-auto h-16">
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        
-        <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
-          <div class="p-4">
-            <img class="w-16 h-16 mx-auto" src="v4/logos/anythingllm.png" alt="AnythingLLM logo">
-            <div class="py-4">
-              <h2 class="text-2xl font-semibold text-center">AnythingLLM</h2>
-              <p class="text-gray-700 text-sm text-center mt-2">AnythingLLM A private ChatGPT to chat with anything!.</p>
-            </div>
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Available Apps</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body class="bg-gradient-to-r from-indigo-950 via-purple-950 to-indigo-950 min-h-screen flex items-center justify-center">
+        <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-12">
+          <img src="logo-transparent.png" alt="Logo" class="mx-auto hover:scale-110 transform transition duration-500 w-auto h-12">
+        </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/anythingllm.png" alt="AnythingLLM logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">AnythingLLM</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Self-hosted multi-user AI, RAG and agent workspace with persistent storage.</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/dozzle.png" alt="Dozzle logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Dozzle</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Dozzle is a small lightweight application with a web based interface to monitor Docker logs. It doesn’t store any log files. It is for live monitoring of your container logs only.</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/mariadb.png" alt="MariaDB logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">MariaDB</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">MariaDB Server is one of the most popular open source relational databases. It's made by the original developers of MySQL and guaranteed to stay open source</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/milvus.png" alt="Milvus (External S3) logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Milvus (External S3)</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Milvus Standalone for CapRover with private etcd metadata and external S3-compatible storage for scalable vector data.</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/minio.png" alt="MinIO logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">MinIO</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">MinIO is a cloud storage server compatible with Amazon S3</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/mongodb.png" alt="MongoDB logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">MongoDB</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL database program</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/mysql.png" alt="MySQL logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">MySQL</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">MySQL is a relational database management system based on SQL</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/n8n-io.png" alt="n8n.io logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">n8n.io</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Node based workflow automation tool</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/ntfy.png" alt="ntfy.sh logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">ntfy.sh</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Send push notifications to your phone or desktop via PUT/POST</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/ollama.png" alt="Ollama logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Ollama</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Run language models locally with persistent model storage.</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/open-webui.png" alt="Open WebUI + Ollama logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Open WebUI + Ollama</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Self-hosted AI web interface with a private bundled Ollama backend.</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/parse.png" alt="Parse logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Parse</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Parse Server is an open source Backend-as-a-Service(BaaS) framework initially developed by Facebook</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/portainer.png" alt="Portainer logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Portainer</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Portainer is a lightweight management UI which allows you to easily manage your different Docker environments</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/postgres.png" alt="PostgreSQL logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">PostgreSQL</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">The PostgreSQL object-relational database system provides reliability and data integrity</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/searxng.png" alt="SearXNG logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">SearXNG</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Privacy-respecting metasearch engine with persistent configuration and cache.</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/siyuan.png" alt="SiYuan logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">SiYuan</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Privacy-first personal knowledge management with a persistent single-writer workspace.</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/snappymail.png" alt="SnappyMail logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">SnappyMail</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Lightweight self-hosted webmail client with persistent configuration and data.</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/stalwart.png" alt="Stalwart Mail Server logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Stalwart Mail Server</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Modern, All-in-One Mail Server written in Rust (JMAP, IMAP, SMTP). Faster and lighter than Postal/Poste.io.</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/vikunja.png" alt="Vikunja logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Vikunja</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">Open Source Task Management</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/weaviate.png" alt="Weaviate logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">Weaviate</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">AI-native vector database with persistent storage and secure-by-default API-key authentication.</p>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
+                <div class="p-4">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/wordpress.png" alt="WordPress logo">
+                  <div class="py-4">
+                    <h2 class="text-2xl font-semibold text-center">WordPress</h2>
+                    <p class="text-gray-700 text-sm text-center mt-2">WordPress is a content management system based on PHP and MySQL that is usually used with the MySQL or MariaDB database</p>
+                  </div>
+                </div>
+              </div>
+            
           </div>
         </div>
-        <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
-          <div class="p-4">
-            <img class="w-16 h-16 mx-auto" src="v4/logos/milvus.png" alt="Milvus (External S3) logo">
-            <div class="py-4">
-              <h2 class="text-2xl font-semibold text-center">Milvus (External S3)</h2>
-              <p class="text-gray-700 text-sm text-center mt-2">Milvus Standalone for CapRover with private etcd metadata and external S3-compatible storage for scalable vector data.</p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
-          <div class="p-4">
-            <img class="w-16 h-16 mx-auto" src="v4/logos/ollama.png" alt="Ollama logo">
-            <div class="py-4">
-              <h2 class="text-2xl font-semibold text-center">Ollama</h2>
-              <p class="text-gray-700 text-sm text-center mt-2">Ollama running locally in CapRover</p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
-          <div class="p-4">
-            <img class="w-16 h-16 mx-auto" src="v4/logos/open-webui.png" alt="Open-webui logo">
-            <div class="py-4">
-              <h2 class="text-2xl font-semibold text-center">Open-webui</h2>
-              <p class="text-gray-700 text-sm text-center mt-2">ChatGPT-Style Web Interface for Ollama 🦙</p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
-          <div class="p-4">
-            <img class="w-16 h-16 mx-auto" src="v4/logos/vikunja.png" alt="Vikunja logo">
-            <div class="py-4">
-              <h2 class="text-2xl font-semibold text-center">Vikunja</h2>
-              <p class="text-gray-700 text-sm text-center mt-2">The open-source, self-hostable to-do app. Organize everything, on all platforms.</p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
-          <div class="p-4">
-            <img class="w-16 h-16 mx-auto" src="v4/logos/weaviate.png" alt="Weaviate AI Native Vector Database logo">
-            <div class="py-4">
-              <h2 class="text-2xl font-semibold text-center">Weaviate AI Native Vector Database</h2>
-              <p class="text-gray-700 text-sm text-center mt-2">Open Source AI Native Vector Database</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
+      </body>
+    </html>
+  

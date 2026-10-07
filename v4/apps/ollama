@@ -1,1 +1,44 @@
-{"captainVersion":4,"services":{"ollama":{"build":".","container_name":"ollama","image":"ollama/ollama","healthcheck":{"test":"ollama --version || exit 1","interval":"10s"},"ports":["11434:11434"],"volumes":["$$cap_appname-ollama-data:/root/.ollama"]}},"volumes":{"$$cap_appname-ollama-data":null},"caproverOneClickApp":{"instructions":{"start":"Ollama is currently being set up.","end":"Ollama has been deployed! Try connecting to it with the Python Client. "},"displayName":"Ollama","isOfficial":true,"description":"Ollama running locally in CapRover","documentation":"https://ollama.com"}}
+{
+  "captainVersion": 4,
+  "services": {
+    "$$cap_appname": {
+      "image": "ollama/ollama:$$cap_ollama_version",
+      "volumes": [
+        "$$cap_appname-data:/root/.ollama"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "ollama",
+          "--version"
+        ],
+        "interval": "30s",
+        "timeout": "10s",
+        "retries": 3
+      },
+      "caproverExtra": {
+        "notExposeAsWebApp": "true"
+      }
+    }
+  },
+  "caproverOneClickApp": {
+    "variables": [
+      {
+        "id": "$$cap_ollama_version",
+        "label": "Ollama Version",
+        "defaultValue": "0.40.0",
+        "description": "Pinned stable Ollama release.",
+        "validRegex": "/^[0-9]+\\.[0-9]+\\.[0-9]+$/"
+      }
+    ],
+    "instructions": {
+      "start": "Ollama will run privately inside the CapRover network and persist downloaded models.",
+      "end": "Ollama is available to other CapRover apps at http://srv-captain--$$cap_appname:11434"
+    },
+    "displayName": "Ollama",
+    "isOfficial": false,
+    "baseUrl": "https://github.com/ollama/ollama",
+    "description": "Run language models locally with persistent model storage.",
+    "documentation": "https://github.com/ollama/ollama"
+  }
+}

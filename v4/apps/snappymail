@@ -1,0 +1,35 @@
+{
+  "captainVersion": 4,
+  "services": {
+    "$$cap_appname": {
+      "image": "ghcr.io/the-djmaze/snappymail:$$cap_snappymail_version",
+      "volumes": [
+        "$$cap_appname-data:/var/lib/snappymail"
+      ],
+      "restart": "unless-stopped",
+      "caproverExtra": {
+        "containerHttpPort": 8888
+      }
+    }
+  },
+  "caproverOneClickApp": {
+    "variables": [
+      {
+        "id": "$$cap_snappymail_version",
+        "label": "SnappyMail Version",
+        "defaultValue": "v2.38.2",
+        "description": "Pinned stable SnappyMail release from GHCR.",
+        "validRegex": "/^v[0-9]+\\.[0-9]+\\.[0-9]+$/"
+      }
+    ],
+    "instructions": {
+      "start": "SnappyMail is a lightweight webmail client. This template persists /var/lib/snappymail and uses the official GHCR image.",
+      "end": "SnappyMail is deployed at https://$$cap_appname.$$cap_root_domain\nEnable HTTPS in CapRover before use. Configure your IMAP/SMTP domains from the SnappyMail admin interface."
+    },
+    "displayName": "SnappyMail",
+    "isOfficial": false,
+    "baseUrl": "https://github.com/the-djmaze/snappymail",
+    "description": "Lightweight self-hosted webmail client with persistent configuration and data.",
+    "documentation": "https://github.com/the-djmaze/snappymail/wiki/Docker"
+  }
+}
