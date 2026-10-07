@@ -21,7 +21,7 @@ caproverOneClickApp:
         - id: $$cap_db_pass
           label: MariaDB Root password
           description: ''
-          defaultValue: $cap_gen_random_hex(32)
+          defaultValue: $$cap_gen_random_hex(32)
           validRegex: /.{1,}/
         - id: $$cap_charset
           label: Default server character set
