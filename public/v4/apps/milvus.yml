@@ -37,9 +37,12 @@ services:
       MINIO_ADDRESS: $$cap_s3_endpoint
       MINIO_ACCESS_KEY_ID: $$cap_s3_access_key_id
       MINIO_SECRET_ACCESS_KEY: $$cap_s3_secret_access_key
-      MINIO_BUCKET_NAME: $$cap_s3_bucket
-      MINIO_USE_SSL: $$cap_s3_use_ssl
-      MINIO_REGION: $$cap_s3_region
+      MINIO_BUCKET_NAME: $cap_s3_bucket
+      MINIO_ROOT_PATH: $cap_s3_root_path
+      MINIO_USE_SSL: $cap_s3_use_ssl
+      MINIO_USE_VIRTUAL_HOST: $cap_s3_use_virtual_host
+      MINIO_REGION: $cap_s3_region
+      MINIO_CLOUD_PROVIDER: aws
       MQ_TYPE: woodpecker
     volumes:
       - $$cap_appname-milvus-data:/var/lib/milvus
@@ -97,13 +100,25 @@ caproverOneClickApp:
       description: Dedicated bucket for Milvus vector/index/WAL object storage.
       validRegex: '/^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$/'
 
-    - id: $$cap_s3_use_ssl
+    - id: $cap_s3_root_path
+      label: S3 root path
+      defaultValue: 'milvus'
+      description: Stable object-key prefix used by Milvus inside the bucket. Do not change it after data exists.
+      validRegex: '/^[A-Za-z0-9._/-]{1,120}$/'
+
+    - id: $cap_s3_use_ssl
       label: Use SSL for S3
       defaultValue: 'true'
       description: Keep true for normal HTTPS S3-compatible endpoints.
       validRegex: '/^(true|false)$/'
 
-    - id: $$cap_s3_region
+    - id: $cap_s3_use_virtual_host
+      label: Use virtual-host S3 addressing
+      defaultValue: 'true'
+      description: Recommended for AWS S3 and Hetzner Object Storage. Set false only if your provider requires path-style requests.
+      validRegex: '/^(true|false)$/'
+
+    - id: $cap_s3_region
       label: S3 region
       defaultValue: 'us-east-1'
       description: Provider region, for example us-east-1 or the region required by your S3 provider.
@@ -115,7 +130,7 @@ caproverOneClickApp:
 
       Before continuing, create a dedicated S3 bucket and credentials. The endpoint must be host:port without http:// or https://.
 
-      This template intentionally does not install MinIO: bulk Milvus vector/index/WAL data belongs on external S3, while only etcd metadata and bounded Milvus working data stay on local CapRover volumes.
+      This template intentionally does not install MinIO: bulk Milvus vector/index/WAL data belongs on external S3, while only etcd metadata and bounded Milvus working data stay on local CapRover volumes. For Hetzner Object Storage, use the regional endpoint (for example fsn1.your-objectstorage.com:443), the matching region (for example fsn1), SSL=true, and virtual-host addressing=true.
     end: |-
       Milvus is deployed privately inside the CapRover network.
 
