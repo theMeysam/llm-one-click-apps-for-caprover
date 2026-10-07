@@ -6,24 +6,30 @@ on:
     branches:
       - main
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22.x]
+permissions:
+  contents: write
 
+concurrency:
+  group: publish-one-click-apps
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8.15.9
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install pnpm
-        run: npm install -g pnpm@8
+          node-version: 22
+          cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -34,7 +40,10 @@ jobs:
       - name: Check formatting
         run: pnpm run format
 
-      - name: Deploy to GitHub Pages
-        run: pnpm run publish
+      - name: Build catalog
+        run: pnpm run build
+
+      - name: Publish gh-pages
+        run: ./scripts/publish-from-actions.sh
         env:
-          GITHUB_TOKEN: $GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
