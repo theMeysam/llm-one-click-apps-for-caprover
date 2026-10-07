@@ -1,44 +1,42 @@
 captainVersion: 4
 services:
-    # anything-llm
-    $$cap_appname:
-        image: mintplexlabs/anythingllm:$$cap_llm_version
-        environment:
-            UID: $$cap_uid
-            GID: $$cap_gid
-            GENERATE_SOURCEMAP: 'false'
-            DISABLE_TELEMETRY: 'true'
-            VITE_API_BASE: http://srv-captain--$$cap_appname:3001/api
-        volumes:
-            - $$cap_appname-storage:/app/server/storage
-        caproverExtra:
-            containerHttpPort: 3001
+  $$cap_appname:
+    image: mintplexlabs/anythingllm:$$cap_llm_version
+    environment:
+      UID: $$cap_uid
+      GID: $$cap_gid
+      STORAGE_DIR: /app/server/storage
+      GENERATE_SOURCEMAP: 'false'
+      DISABLE_TELEMETRY: 'true'
+    volumes:
+      - $$cap_appname-storage:/app/server/storage
+    caproverExtra:
+      containerHttpPort: 3001
 caproverOneClickApp:
-    variables:
-        - id: $$cap_llm_version
-          label: Anythingllm Version
-          defaultValue: 'latest'
-          description: Checkout their docker page for the valid tags https://hub.docker.com/r/mintplexlabs/anythingllm/tags
-
-        - id: $$cap_uid
-          label: User ID
-          defaultValue: '1000'
-          description: User ID that the process uses, run (id $user) in your instance to see the id
-          validRegex: /.{1,}/
-
-        - id: $$cap_gid
-          label: Group ID
-          defaultValue: '1000'
-          description: Group ID that the process uses, run (id $user) in your instance to see the id
-          validRegex: /.{1,}/
-    instructions:
-        start: >-
-            A multi-user ChatGPT for any LLMs, and vector database. Unlimited documents, messages, and storage in one privacy-focused app. Now available as a desktop application!
-        end: >-
-            Aaaand you're done! 😄
-            Your service is available at http://$$cap_appname.$$cap_root_domain
-    displayName: 'AnythingLLM'
-    isOfficial: true
-    baseUrl: https://github.com/Mintplex-Labs/anything-llm
-    description: AnythingLLM A private ChatGPT to chat with anything!.
-    documentation: Taken from https://github.com/Mintplex-Labs/anything-llm
+  variables:
+    - id: $$cap_llm_version
+      label: AnythingLLM Version
+      defaultValue: 'v1.17.0'
+      description: Pinned stable release. See https://github.com/Mintplex-Labs/anything-llm/releases
+      validRegex: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+    - id: $$cap_uid
+      label: User ID
+      defaultValue: '1000'
+      description: The official container runs as UID 1000 by default.
+      validRegex: /^[0-9]+$/
+    - id: $$cap_gid
+      label: Group ID
+      defaultValue: '1000'
+      description: The official container runs as GID 1000 by default.
+      validRegex: /^[0-9]+$/
+  instructions:
+    start: |-
+      AnythingLLM Docker with persistent /app/server/storage. The version is pinned to the latest stable release rather than the moving latest image.
+    end: |-
+      AnythingLLM is deployed at https://$$cap_appname.$$cap_root_domain
+      Enable HTTPS in CapRover before production use.
+  displayName: AnythingLLM
+  isOfficial: false
+  baseUrl: https://github.com/Mintplex-Labs/anything-llm
+  description: Self-hosted multi-user AI, RAG and agent workspace with persistent storage.
+  documentation: https://docs.anythingllm.com/installation-docker/local-docker
