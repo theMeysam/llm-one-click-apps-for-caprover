@@ -46,6 +46,8 @@ services:
 caproverOneClickApp:
     displayName: n8n.io
     description: Node based workflow automation tool
+    baseUrl: https://github.com/n8n-io/n8n
+    documentation: https://docs.n8n.io/hosting/installation/docker/
     isOfficial: true
     instructions:
         start: |-
