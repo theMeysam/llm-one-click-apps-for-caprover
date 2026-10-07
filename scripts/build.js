@@ -58,7 +58,7 @@ async function makeAppList(appFilenames) {
         name: appName,
         displayName: displayName,
         description: description,
-        isOfficial: appData.isOfficial === 'true',
+        isOfficial: appData.isOfficial === true || appData.isOfficial === 'true',
         logoUrl: `${appName}.png`,
       });
     } else {
@@ -128,7 +128,7 @@ async function createIndexHtml(appList) {
             ${appList.map(app => `
               <div class="bg-gray-200 rounded-md overflow-hidden shadow transform transition duration-300 hover:scale-105">
                 <div class="p-4">
-                  <img class="w-16 h-16 mx-auto" src="v4/logos/${app.logoUrl}" alt="${app.displayName} logo">
+                  <img class="w-16 h-16 mx-auto object-contain" src="v4/logos/${app.logoUrl}" alt="${app.displayName} logo">
                   <div class="py-4">
                     <h2 class="text-2xl font-semibold text-center">${app.displayName}</h2>
                     <p class="text-gray-700 text-sm text-center mt-2">${app.description}</p>

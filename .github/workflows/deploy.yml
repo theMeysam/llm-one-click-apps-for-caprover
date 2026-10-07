@@ -1,15 +1,18 @@
 name: Publish One Click Apps
 
 on:
+  workflow_dispatch:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [22.x]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -22,8 +25,14 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm@8
 
-      - name: Install dependencies with pnpm
-        run: pnpm install
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate apps
+        run: pnpm run validate
+
+      - name: Check formatting
+        run: pnpm run format
 
       - name: Deploy to GitHub Pages
         run: pnpm run publish

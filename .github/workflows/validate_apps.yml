@@ -1,6 +1,7 @@
 name: Validate One Click Apps
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -13,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [22.x]
 
     steps:
       - name: Checkout code
@@ -24,26 +25,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache .pnpm-store
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-node${{ matrix.node-version }}-
-
       - name: Install pnpm
         run: npm install -g pnpm@8
 
-      - name: Install dependencies with pnpm
-        run: pnpm install
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: Validate code
+      - name: Validate apps
         run: pnpm run validate
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Format code
+      - name: Check formatting
         run: pnpm run format
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build catalog
+        run: pnpm run build

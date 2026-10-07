@@ -1,40 +1,49 @@
-## Fork of CapRover One Click Apps for AI Native applications
+# Meysam's CapRover One-Click Apps
 
-### Milvus, Weaviate, Ollama and AI-native apps
+A maintained CapRover One-Click catalog for the infrastructure and self-hosted apps used across my servers. App defaults are pinned to current stable/LTS releases where that is the safer production choice; SearXNG intentionally follows its rolling stable image.
 
-This fork maintains CapRover One-Click Apps for AI-native workloads, including Milvus with external S3-compatible object storage, Weaviate, Ollama, AnythingLLM, and Open WebUI.
+## Add this repository to CapRover
 
-![CapRover, Weaviate, and Ollama](public/v4/logos/caprover_weaviate_and_ollama.png)
+In **Apps → One-Click Apps/Databases → 3rd party repositories**, add:
 
+`https://themeysam.github.io/llm-one-click-apps-for-caprover`
 
-## 🚀 Repo for CapRover One-Click Apps
+## Catalog
 
-<p align="center">
-  <img src="https://github.com/theMeysam/llm-one-click-apps-for-caprover/actions/workflows/validate_apps.yml/badge.svg?event=push" alt="Validate One Click Apps"></img>
-  <img src="https://github.com/theMeysam/llm-one-click-apps-for-caprover/actions/workflows/deploy.yml/badge.svg?event=push" alt="Publish One Click Apps"></img>
-</p>
+| App | Default |
+| --- | --- |
+| AnythingLLM | v1.17.0 |
+| Dozzle | v11.3.0 |
+| MariaDB | 12.3.3 |
+| Milvus (External S3) | v2.6.25 + etcd v3.5.25 |
+| MinIO | RELEASE.2025-10-15T17-29-55Z |
+| MongoDB | 8.3.13 |
+| MySQL | 8.4.12 LTS |
+| n8n | 2.42.3 + PostgreSQL 18.6 |
+| ntfy | v2.28.0 |
+| Ollama | 0.40.0 |
+| Open WebUI + Ollama | v0.11.4 + Ollama 0.40.0 |
+| Parse | Server 9.10.3 + Dashboard 9.2.0 + MongoDB 8.0 |
+| Portainer | 2.45.1 |
+| PostgreSQL | 18.6 |
+| SearXNG | rolling stable |
+| SiYuan | v3.8.6 |
+| SnappyMail | v2.38.2 |
+| Stalwart Mail Server | v0.16.25 |
+| Vikunja | 2.7.0 + PostgreSQL 18.6 |
+| Weaviate | 1.39.10 |
+| WordPress | 7.1.3 + MySQL 8.4.12 |
 
-## How to add this repo
+All catalog logos are PNG assets synced from the upstream project or the official CapRover catalog. The generated homepage renders them with preserved aspect ratios.
 
-- 🖥️ Login to your CapRover dashboard
-- 📲 Go to **apps** and click on **One-Click Apps/Databases**, then scroll down to the bottom
-- 📋 Under **3rd party repositories:** copy `https://themeysam.github.io/llm-one-click-apps-for-caprover` and paste it into the text box
-- 🔄 Click the **_Connect New Repository_** button
+## Development
 
+```bash
+npm install -g pnpm@8
+pnpm install
+pnpm run validate
+pnpm run format
+pnpm run build
+```
 
-## To create your own repository:
-
-- 🍴 Fork this repository
-- 🗑️ Delete all existing apps (to avoid duplicate apps), and add your own apps.
-- 🛠️ Run `npm install -g pnpm` or `sudo npm install -g pnpm`
-- ⚙️ Run `pnpm i`
-- 🧪 Run `pnpm run validate`
-- 📝 Run `pnpm run format:write`
-- 🏗️ Run `pnpm run build` 
-- 🌐 The static content in `./dist` can be published with GitHub Pages. A `public/CNAME` file is optional and should only be added when using a real custom domain.
-
-## 🚀 Apps
-
-For a complete list of available one-click apps, please visit the [llm-one-click-apps-for-caprover](https://themeysam.github.io/llm-one-click-apps-for-caprover/) repository homepage.
-
-Feel free to explore, contribute, and enhance your CapRover experience with these one-click apps! 🚢✨
+GitHub Actions validates YAML metadata, required PNG logos, formatting, and the generated catalog before publishing to GitHub Pages.

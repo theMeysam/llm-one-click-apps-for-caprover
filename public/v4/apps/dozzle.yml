@@ -1,0 +1,28 @@
+captainVersion: 4
+services:
+    $$cap_appname:
+        image: amir20/dozzle:$$cap_version
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        environment:
+            DOZZLE_AUTH_PROVIDER: none
+        caproverExtra:
+            containerHttpPort: '8080'
+caproverOneClickApp:
+    variables:
+        - id: $$cap_version
+          label: Version Tag
+          description: Check out their Docker page for the valid tags https://hub.docker.com/r/amir20/dozzle/tags?page=1&ordering=last_updated
+          defaultValue: 'v11.3.0'
+    instructions:
+        start: |-
+            Dozzle is a small lightweight application with a web based interface to monitor Docker logs. It doesn’t store any log files. It is for live monitoring of your container logs only.
+            Dozzle should work for most. It has been tested with hundreds of containers. However, it doesn't support offline searching. Products like Loggly, Papertrail or Kibana are more suited for full search capabilities.
+
+            More details: https://github.com/amir20/dozzle
+
+        end: Dozzle is deployed. Enable HTTPS and protect it with Cloudflare Access or another trusted authentication layer before exposing it publicly; Docker socket access is highly privileged.
+    displayName: Dozzle
+    isOfficial: true
+    description: Dozzle is a small lightweight application with a web based interface to monitor Docker logs. It doesn’t store any log files. It is for live monitoring of your container logs only.
+    documentation: Taken from https://github.com/amir20/dozzle
