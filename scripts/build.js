@@ -97,7 +97,10 @@ async function buildDist() {
     };
 
     await fs.outputJson(path.join(V4_FOLDER, 'list'), list);
-    await fs.copy(path.join(PUBLIC_FOLDER, 'CNAME'), path.join(DIST_FOLDER, 'CNAME'));
+    const cnamePath = path.join(PUBLIC_FOLDER, 'CNAME');
+    if (await fs.pathExists(cnamePath)) {
+      await fs.copy(cnamePath, path.join(DIST_FOLDER, 'CNAME'));
+    }
     await fs.copy(path.join(PUBLIC_FOLDER, 'logo-transparent.png'), path.join(DIST_FOLDER, 'logo-transparent.png'));
     await createIndexHtml(allAppsList.appDetails);
   } catch (err) {
